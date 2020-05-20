@@ -1,0 +1,78 @@
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Article</th>
+                            <th scope="col">Disponibilité</th>
+                            <th scope="col" class="text-center">Quantité</th>
+                            <th scope="col" class="text-right">Prix</th>
+                            <th scope="col" class="text-right">Prix Total</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let article of cartItems">
+                            <td colspan="7">
+                                <div *ngIf="cartItems.length >0">
+                                    <app-panier-article [cartItems]="article"></app-panier-article>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Sub-Total</td>
+                            <td class=" text-right ">{{panierTotal}} €</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Frais de port</td>
+                            <td class="text-right ">{{fraisport}} €</td>
+                        </tr>
+                        <tr *ngIf="difference!=0 ">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class=" text-right ">
+                                <span *ngIf="panierTotal < 36 ">Plus que {{difference}} € pour obtenir les frais de port gratuit </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right "><strong>{{grandTotal}} €</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2 ">
+            <div class="row ">
+                <div class="col-sm-12 col-md-6 ">
+                    <button class="btn btn-block btn-light ">Continuer son shopping</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right ">
+                    <button class="btn btn-lg btn-block btn-info text-uppercase ">Passer la commande</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

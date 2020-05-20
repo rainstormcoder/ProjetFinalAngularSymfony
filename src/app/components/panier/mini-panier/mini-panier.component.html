@@ -1,0 +1,6 @@
+<a class="btn btn-info btn-sm ml-3" href="">
+    <i class="fa fa-shopping-cart"></i> Panier {{this.panierTotal}} €
+    <span *ngIf="this.cartItems.length > 0" class="badge badge-light">{{this.cartItems.length}}</span>
+
+    <!-- <span *ngIf="cartItems.lenght===0" class="badge badge-light m-1">0€</span> -->
+</a>

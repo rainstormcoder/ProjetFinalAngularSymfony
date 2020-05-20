@@ -1,0 +1,114 @@
+<div class="row products">
+    <div class="container my-2 py-3 z-depth-1">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a class="text-info" href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-info" href="category.html">Category</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Product</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!--Section: Content-->
+        <section class="px-md-2 mx-md-3 text-center text-lg-left dark-grey-text">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-6 mb-1 mb-md-0">
+                    <div class="view overlay z-depth-1-half">
+                        <a data-toggle="modal" data-target="#productModal">
+                            <img src="{{imageSrc}} " class="img-fluid " alt=" ">
+                        </a>
+                    </div>
+
+
+                    <div class="row ">
+                        <figure class="col-md-3 " *ngFor="let imageButton of imageButtons; let i=index ">
+                            <a (click)="onClick(imageButton) ">
+                                <img src="../assets/images/{{ article.reference }}_{{i}}.jpg " class="img-fluid ">
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-4 mb-md-0 ">
+
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <h3 class="font-weight-bold ">{{ article.titre }}</h3>
+                            <h6>Référence : {{ article.reference }} Marque : {{ article.marque }}</h6>
+                            <p class="text-muted ">{{ article.descriptif }}</p>
+
+
+                            <h3 class="font-weight-bold ">{{ article.prix }} €</h3>
+
+
+                            <!-- <p class="price_discounted">149.90 $</p> -->
+
+                            <!-- <form method="get" action=""> -->
+                            <!-- <div class="form-group">
+                                    <label for="colors">Color</label>
+                                    <select class="custom-select" id="colors">
+                                            <option selected>Select</option>
+                                            <option value="1">Blue</option>
+                                            <option value="2">Red</option>
+                                            <option value="3">Green</option>
+                                        </select>
+                                </div> -->
+                            <div class="form-group">
+                                <label>Quantity :</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="quantity-left-minus btn btn-info btn-number" data-type="minus" data-field="">
+                                                    <i class="fa fa-minus"></i>
+                                            </button>
+                                    </div>
+                                    <input type="text" class="form-control" id="quantity" name="quantity" min="1" max="10" value="1">
+                                    <div class="input-group-append">
+                                        <button type="button" class="quantity-right-plus btn btn-info btn-number" data-type="plus" data-field="">
+                                                    <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <a href="" class="btn btn-info btn-lg btn-block text-uppercase"> -->
+                            <button class="btn btn-info btn-lg btn-block text-uppercase" type="button " (click)="handleAddToCart() ">
+                                    <i class="fa fa-shopping-cart "></i> Ajouter au panier
+                                </button>
+                            <!-- </a> -->
+                            <!-- </form> -->
+
+                            <div class="product_rassurance p-3 mb-2 ">
+                                <ul class="list-inline ">
+                                    <li class="list-inline-item "><i class="fa fa-truck fa-2x "></i><br/>livraison rapide</li>
+                                    <li class="list-inline-item "><i class="fa fa-credit-card fa-2x "></i><br/>paiement sécurisé</li>
+                                    <li class="list-inline-item "><i class="fa fa-phone fa-2x "></i><br/>+33 00 00 00 00</li>
+                                </ul>
+                            </div>
+                            <div class="reviews_product p-3 mb-2 ">
+                                3 reviews
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i> (4/5)
+                                <a class="pull-right " href="#reviews ">Voir tous les avis</a>
+                            </div>
+                            <!-- <div class="datasheet p-3 mb-2 bg-info text-white ">
+                                <a href=" " class="text-white "><i class="fa fa-file-text "></i> Download DataSheet</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <!--Grid column-->
+                <!--Grid row-->
+            </div>
+        </section>
+        <!--Section: Content-->
+    </div>
+</div>
