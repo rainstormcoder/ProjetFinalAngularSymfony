@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {MessengerService} from 'src/app/services/messenger.service'
+import { Component, OnInit, Output, Input } from '@angular/core';
+import { MessengerService } from 'src/app/services/messenger.service';
 import { Article } from 'src/app/interfaces/article';
+import { PanierService } from 'src/app/services/panier.service';
+import { PanierArticle } from 'src/app/interfaces/panier-article';
 
 @Component({
   selector: 'app-panier',
@@ -9,63 +11,113 @@ import { Article } from 'src/app/interfaces/article';
 })
 export class PanierComponent implements OnInit {
 
-constructor(private message: MessengerService) { }
+  constructor(private message: MessengerService, private panierService: PanierService) { }
 
-cartItems=[
-// {id : 1, titre : 'ours Brun', prix : 5, quantite : 2},
-// {id : 15, titre : 'Lapin Blanc', prix : 2, quantite : 1},
-// {id : 3, titre : 'Chien Brun', prix : 4, quantite : 5}
-];
+  cartItems = [];
+  panierTotal = 0
 
-panierTotal=0
-fraisport=0
-difference=0
-grandTotal=0
+  fraisport = 0
+  difference = 0
+  grandTotal = 0
 
   ngOnInit(): void {
-this.message.getMessage().subscribe((article: Article)=>{
-    this.addArticleToPanier(article)
- })  
-//  this.message.getMessage().subscribe((article: Article)=>{
-//   this.deleteArticleToPanier(article)
-// }) 
+    this.handleSubcription();
+    this.loadPanierArticle();
+  }
 
-}
- addArticleToPanier(article: Article){
+  handleSubcription() {
+    this.message.getMessage().subscribe((article: Article) => {
+      this.loadPanierArticle();
+    })
+  }
 
-  let articleExist=false;
+  loadPanierArticle() {
+    this.panierService.getCartArticle().subscribe((items: PanierArticle[]) => {
+     this.cartItems = items;
+    this.calcultotalpanier();
+    })
+  }
 
-  for(let i in this.cartItems){
-      if(this.cartItems[i].id===article.id){
-        this.cartItems[i].quantite++;
-        articleExist=true;
-      break;
+  minusQuantity(article: Article) {
+    for (let i in this.cartItems) {
+      if (this.cartItems[i].id === article.id && this.cartItems[i].quantite != 1) {
+        this.cartItems[i].quantite--;
+        this.panierService.updateCartArticle(this.cartItems[i]).subscribe(() => {
+          this.message.sendMessage(this.cartItems[i])
+        })
+        break;
       }
-  }
-    if(!articleExist){  
-      this.cartItems.push({
-        id:article.id,
-        titre: article.titre,
-        quantite: 1,
-        prix: article.prix}) 
+    }
   }
 
-  this.panierTotal=0;
-  this.grandTotal=0;
-  this.cartItems.forEach(article => {
-    this.panierTotal+=(article.quantite*article.prix)     
-      });
+  addQuantity(article: Article) {
+    for (let i in this.cartItems) {
+      if (this.cartItems[i].id === article.id && this.cartItems[i].stock > this.cartItems[i].quantite) {
+        this.cartItems[i].quantite++;
+        this.panierService.updateCartArticle(this.cartItems[i]).subscribe(() => {
+          this.message.sendMessage(this.cartItems[i])
+        })
+        break;
+      }
+    }
+  }
 
-  if(this.panierTotal >= 36){ this.fraisport=0}
-  else {this.fraisport=6.9}
+  // addArticleToPanier(article: Article) {
+  //   console.log('fonction add')
 
-  if(this.panierTotal < 36){this.difference= 36 - this.panierTotal}
-  this.grandTotal=this.panierTotal + this.fraisport
-}
+  // let articleExist = false;
+  // let articleOutOfStock = false;
 
-deleteArticleToPanier(article:Article){
-  this.cartItems = this.cartItems.filter(({id}) => id !== article.id)
+  // for (let i in this.cartItems) {
+  //   console.log(article.id)
+  //   console.log(article.quantite)
+  //   if (this.cartItems[i].id === article.id) {
+  //     if (article.quantite > this.cartItems[i].quantite) {
+  //       this.cartItems[i].quantite++;
+  //       console.log(this.cartItems[i].quantite)
+  //       articleExist = true;
+  //     }
+  //     else articleOutOfStock = true;
+  //     break;
+  //   }
+  // }
+  // if (!articleExist && !articleOutOfStock) {
+  //   this.cartItems.push({
+  //     id: article.id,
+  //     titre: article.titre,
+  //     reference: article.reference,
+  //     quantite: 1,
+  //     stock: article.quantite,
+  //     prix: article.prix
+  //   })
+  // }
 
- }
+  // }
+  calcultotalpanier() {
+    this.panierTotal = 0;
+    this.grandTotal = 0;
+    this.cartItems.forEach(article => {
+      this.panierTotal += (article.quantite * article.prix)
+    });
+
+    if (this.panierTotal >= 36) { this.fraisport = 0 }
+    else { this.fraisport = 6.9 }
+
+    if (this.panierTotal < 36) { this.difference = 36 - this.panierTotal }
+    this.grandTotal = this.panierTotal + this.fraisport
+  }
+
+
+  // deleteArticleToPanier(article: Article) {
+  //   console.log('delete');
+  //   for (let cartItem of this.cartItems) {
+  //     if (cartItem.id === article.id) {
+  //       console.log(cartItem.id);
+  //       this.cartItems.splice(this.cartItems.indexOf(cartItem), 1);
+  //       this.calcultotalpanier();
+  //       break;
+  //     }
+  //   }
+  // }
 
 }

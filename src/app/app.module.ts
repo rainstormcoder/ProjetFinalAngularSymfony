@@ -21,6 +21,10 @@ import { MiniPanierComponent } from './components/panier/mini-panier/mini-panier
 import { PanierComponent } from './components/panier/panier/panier.component';
 import { PanierArticleComponent } from './components/panier/panier-article/panier-article.component';
 import { GaleryArticleComponent } from './components/galery-article/galery-article.component';
+import { FormsModule } from '@angular/forms';
+import { CommandeComponent } from './components/panier/commande/commande.component';
+import { IdentificationComponent } from './components/panier/identification/identification.component';
+
 
 
 
@@ -37,14 +41,17 @@ import { GaleryArticleComponent } from './components/galery-article/galery-artic
     MiniPanierComponent,
     PanierComponent,
     PanierArticleComponent,
-    GaleryArticleComponent
+    GaleryArticleComponent,
+    CommandeComponent,
+    IdentificationComponent
   ],
   imports: [
     BrowserModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
     DeviceDetectorModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [ArticleService],
   bootstrap: [AppComponent]

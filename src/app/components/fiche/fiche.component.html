@@ -6,8 +6,8 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a class="text-info" href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-info" href="category.html">Category</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Product</li>
+                            <li class="breadcrumb-item"><a class="text-info" routerLink="../../../galery-article">Galerie</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ article.titre }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -61,30 +61,37 @@
                                         </select>
                                 </div> -->
                             <div class="form-group">
-                                <label>Quantity :</label>
+
+                                <label>Quantité :</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <button type="button" class="quantity-left-minus btn btn-info btn-number" data-type="minus" data-field="">
-                                                    <i class="fa fa-minus"></i>
-                                            </button>
+                                        <button type="button" (click)="minus()" class="quantity-left-minus btn btn-info btn-number" data-type="minus" data-field="">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
                                     </div>
-                                    <input type="text" class="form-control" id="quantity" name="quantity" min="1" max="10" value="1">
-                                    <div class="input-group-append">
-                                        <button type="button" class="quantity-right-plus btn btn-info btn-number" data-type="plus" data-field="">
-                                                    <i class="fa fa-plus"></i>
+                                    <input type="text" [value]="quantity" size="5">
+                                    <div class=" input-group-append ">
+                                        <button type="button" (click)="plus()" class="quantity-right-plus btn btn-info btn-number " data-type="plus " data-field=" ">
+                                            <i class="fa fa-plus "></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <a href="" class="btn btn-info btn-lg btn-block text-uppercase"> -->
-                            <button class="btn btn-info btn-lg btn-block text-uppercase" type="button " (click)="handleAddToCart() ">
+                            <!-- <a href=" " class="btn btn-info btn-lg btn-block text-uppercase "> -->
+                            <button class="btn btn-info btn-lg btn-block text-uppercase " type="button" (click)="handleAddToCart()">
                                     <i class="fa fa-shopping-cart "></i> Ajouter au panier
-                                </button>
+                            </button>
                             <!-- </a> -->
                             <!-- </form> -->
+                            <br>
+                            <div class="input-group mb-3">
+                                <div class="card-body bg-white">
+                                    Gagnez moi
+                                </div>
 
-                            <div class="product_rassurance p-3 mb-2 ">
-                                <ul class="list-inline ">
+                            </div>
+                            <div class="product_rassurance p-3 mb-2">
+                                <ul class="list-inline">
                                     <li class="list-inline-item "><i class="fa fa-truck fa-2x "></i><br/>livraison rapide</li>
                                     <li class="list-inline-item "><i class="fa fa-credit-card fa-2x "></i><br/>paiement sécurisé</li>
                                     <li class="list-inline-item "><i class="fa fa-phone fa-2x "></i><br/>+33 00 00 00 00</li>

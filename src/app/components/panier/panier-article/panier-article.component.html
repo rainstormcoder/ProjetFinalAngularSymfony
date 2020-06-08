@@ -1,14 +1,35 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <tr>
-            <td><img src=" https://dummyimage.com/50x50/55595c/fff " /> </td>
+            <td>
+                <a [routerLink]="[ '/fiche', cartItems.articleId, cartItems.reference] ">
+                    <img src="../assets/images/{{ cartItems.reference }}_0.jpg" width="50" />
+                </a>
+            </td>
             <td>{{cartItems.titre}}</td>
-            <td>In stock</td>
-            <td><input class="form-control " type="text " value="{{cartItems.quantite}}" /></td>
+            <td>
+                <div *ngIf="cartItems.stock > 0;else affiche">En stock</div>
+                <ng-template #affiche>Article indisponible</ng-template>
+            </td>
+
+            <td>
+                <div class="form-check-inline">
+                    <button class="btn btn-info" (click)="minus(cartItems)"><i class="fa fa-minus"></i></button>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-control " type="text " [(ngModel)]="cartItems.quantite" />
+                </div>
+                <div class="form-check-inline">
+                    <button class="btn btn-info" (click)="plus(cartItems)"><i class="fa fa-plus"></i></button>
+                </div>
+
+            </td>
+
             <td class="text-right ">{{cartItems.prix}} €</td>
             <td class="text-right ">{{cartItems.prix * cartItems.quantite}} €</td>
             <td class="text-right ">
-                <button (click)="handledeleteToCart()" class=" btn btn-sm btn-danger "><i class="fa fa-trash "></i> </button> </td>
+                <button (click)="handledeleteToCart(cartItems)" class=" btn btn-sm btn-danger "><i class="fa fa-trash "></i> </button>
+            </td>
         </tr>
     </table>
 </div>
