@@ -4,5 +4,15 @@
         <app-article [articleliste]="article"></app-article>
     </div>
 </div>
+<div class="row justify-content-center">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" *ngFor="let elt of fakeArray, let pageindex=index ">
+                <button (click)="articlePagination(pageindex+1) " *ngIf="(isValue!=pageindex+1)" class="page-link">{{(pageindex+1)}}</button>
+                <button (click)="articlePagination(pageindex+1) " *ngIf="(isValue==pageindex+1)" class="page-link btn-secondary active">{{(pageindex+1)}}</button>
+            </li>
+        </ul>
+    </nav>
 
+</div>
 <app-panier></app-panier>

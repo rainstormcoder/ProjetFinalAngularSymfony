@@ -43,7 +43,7 @@ import { IdentificationComponent } from './components/panier/identification/iden
     PanierArticleComponent,
     GaleryArticleComponent,
     CommandeComponent,
-    IdentificationComponent
+    IdentificationComponent,
   ],
   imports: [
     BrowserModule,

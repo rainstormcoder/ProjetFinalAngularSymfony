@@ -1,7 +1,51 @@
-<p>identification works!</p>
 <div class="row products">
     <div class="container my-2 py-3 z-depth-1">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a>Panier</a></li>
+                    <li class="list-inline-item active"><a>Identification</a></li>
+                    <li class="list-inline-item"><a>Livraison</a></li>
+                    <li class="list-inline-item"><a>Paiement</a></li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">J'ai un compte Kididoudou</h5>
+                            <p class="card-text">Je m'identifie pour commander</p>
+                            <form #authForm=ngForm (submit)=login()>
+                                <label for="basic-url">Votre adresse e-mail</label>
+                                <div class="input-group mb-3">
 
+                                    <input type=email required [(ngModel)]=user.email name=email class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                                <label for="basic-url">Votre Mot de passe</label>
+                                <div class="input-group mb-3">
 
+                                    <input type=password required [(ngModel)]=user.password name=password class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <button class="btn btn-info">Connection</button>
+                                </div>
+                            </form>
+                            <!-- [disabled]=!authForm.valid -->
+
+                            <!-- <a href="#" class="btn btn-info">Connection</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Je n'ai pas de compte Kididoudou</h5>
+                            <p class="card-text">Je crée un compte pour commander</p>
+                            <a href="#" class="btn btn-info">Créer un compte</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>

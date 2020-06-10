@@ -30,18 +30,10 @@ constructor(private message: MessengerService, private panierService: PanierServ
       reference:this.articleliste.reference,
       stock:this.articleliste.quantite,
     }
-
-    console.log(articleForPanier)
+      console.log(articleForPanier)
 
     this.panierService.addCartArticle(articleForPanier).subscribe(()=> {
       this.message.sendMessage(this.articleliste)
       }) 
   }
-
-  // handleAddToCart(){
-  //   this.message.sendMessage(this.articleliste)
-  // this.message.sendMessage([this.articleliste,1])
-  // }
-  
-  
 }

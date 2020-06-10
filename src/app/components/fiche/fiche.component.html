@@ -28,7 +28,7 @@
 
                     <div class="row ">
                         <figure class="col-md-3 " *ngFor="let imageButton of imageButtons; let i=index ">
-                            <a (click)="onClick(imageButton) ">
+                            <a *ngIf=" i < article.nbimage" (click)="onClick(imageButton) ">
                                 <img src="../assets/images/{{ article.reference }}_{{i}}.jpg " class="img-fluid ">
                             </a>
                         </figure>

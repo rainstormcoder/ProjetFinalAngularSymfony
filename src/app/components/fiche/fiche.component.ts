@@ -28,7 +28,11 @@ export class FicheComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(response => {
       this.id = +response.get('id');
-      this.articleService.getArticleById(this.id).subscribe(eq => this.article = eq);
+      this.articleService.getArticleById(this.id).subscribe(eq => 
+        {this.article = eq
+          console.log(eq)
+        }
+        );
 
 
     });
@@ -47,6 +51,8 @@ export class FicheComponent implements OnInit {
       { src: '../assets/images/' + this.route.snapshot.params['photo'] + '_2.jpg', name: 'image-2' },
       { src: '../assets/images/' + this.route.snapshot.params['photo'] + '_3.jpg', name: 'image-3' },
     ]
+   
+   
 
   }
   

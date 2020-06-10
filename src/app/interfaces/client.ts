@@ -5,5 +5,6 @@ export interface Client {
     datenaissance?: Date;
     tel?: number;
     email?: string;
+    password?:string;
     date?: Date;
 }

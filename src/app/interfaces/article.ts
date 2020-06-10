@@ -11,5 +11,6 @@ export interface Article {
     categorie?: number;
     souscategorie?: number;
     reference?: string;
+    nbimage?:number;
     statut?: boolean;   
 }
