@@ -15,7 +15,7 @@ import { MarqueComponent } from './components/marque/marque.component';
 import { FicheComponent } from './components/fiche/fiche.component';
 import { HomeComponent } from './components/home/home.component';
 import { ArticleComponent } from './components/article/article.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticleService } from './services/article.service';
 import { MiniPanierComponent } from './components/panier/mini-panier/mini-panier.component';
 import { PanierComponent } from './components/panier/panier/panier.component';
@@ -24,6 +24,9 @@ import { GaleryArticleComponent } from './components/galery-article/galery-artic
 import { FormsModule } from '@angular/forms';
 import { CommandeComponent } from './components/panier/commande/commande.component';
 import { IdentificationComponent } from './components/panier/identification/identification.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { MembreModule } from './modules/membre/membre.module';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 
 
@@ -44,6 +47,7 @@ import { IdentificationComponent } from './components/panier/identification/iden
     GaleryArticleComponent,
     CommandeComponent,
     IdentificationComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +56,11 @@ import { IdentificationComponent } from './components/panier/identification/iden
     DeviceDetectorModule.forRoot(),
     HttpClientModule,
     FormsModule,
+    MembreModule,
   ],
-  providers: [ArticleService],
+  providers: [ArticleService,
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

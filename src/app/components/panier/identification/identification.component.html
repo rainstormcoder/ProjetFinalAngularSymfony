@@ -9,24 +9,21 @@
                     <li class="list-inline-item"><a>Paiement</a></li>
                 </ul>
             </div>
-            <div class="row">
+            <div class="row col-sm-12">
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">J'ai un compte Kididoudou</h5>
                             <p class="card-text">Je m'identifie pour commander</p>
                             <form #authForm=ngForm (submit)=login()>
-                                <label for="basic-url">Votre adresse e-mail</label>
+                                <label for="basic-url" class="text-info">Votre adresse e-mail</label>
                                 <div class="input-group mb-3">
-
                                     <input type=email required [(ngModel)]=user.email name=email class="form-control" id="basic-url" aria-describedby="basic-addon3">
                                 </div>
-                                <label for="basic-url">Votre Mot de passe</label>
+                                <label for="basic-url" class="text-info">Votre mot de passe</label>
                                 <div class="input-group mb-3">
-
                                     <input type=password required [(ngModel)]=user.password name=password class="form-control" id="basic-url" aria-describedby="basic-addon3">
                                 </div>
-
                                 <div class="input-group mb-3">
                                     <button class="btn btn-info">Connection</button>
                                 </div>
@@ -41,6 +38,12 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Je n'ai pas de compte Kididoudou</h5>
+                            <form #inscriptionForm=ngForm (submit)=login()>
+                                <label for="basic-url" class="text-info">Votre adresse e-mail</label>
+                                <div class="input-group mb-3">
+                                    <input type=email required [(ngModel)]=user.email name=email class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            </form>
                             <p class="card-text">Je crée un compte pour commander</p>
                             <a href="#" class="btn btn-info">Créer un compte</a>
                         </div>

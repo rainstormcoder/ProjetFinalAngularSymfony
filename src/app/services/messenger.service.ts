@@ -15,8 +15,8 @@ export class MessengerService {
 myObservables: any = [];
   
   sendMessage(myObservables){
-    console.log('myobsercable=');
-    console.log(myObservables)
+    // console.log('myobsercable=');
+    // console.log(myObservables)
     this.subject.next(myObservables)
  }
 
